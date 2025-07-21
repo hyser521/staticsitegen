@@ -7,10 +7,10 @@ class HTMLNode:
         self.props = props
     
     def to_html(self):
-        return NotImplemented
+        return NotImplementedError
     
     def props_to_html(self):
-        return "".join(list(map(lambda prop: format_props(prop[0], prop[1]), self.props.items())))
+        return "".join(list(map(lambda prop: format_props(prop[0], prop[1]), self.props.items()))) if self.props is not None else ""
 
     def __eq__(self, value):
         return self.tag == value.tag and self.value == value.value and self.children == value.children and self.props == value.props
