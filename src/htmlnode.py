@@ -10,10 +10,13 @@ class HTMLNode:
         return NotImplemented
     
     def props_to_html(self):
-        "".join(list(map(format_props, self.props)))
+        return "".join(list(map(lambda prop: format_props(prop[0], prop[1]), self.props.items())))
+
+    def __eq__(self, value):
+        return self.tag == value.tag and self.value == value.value and self.children == value.children and self.props == value.props
 
     def __repr__(self):
-        return f"HTMLNode({self.tag}, {self.value}, {self.children}, {self.props_to_html()})"
+        return f"HTMLNode({self.tag}, {self.value}, {self.children}, {self.props_to_html() if self.props is not None else None})"
     
 def format_props(key, value):
     return f' {key}="{value}"'
