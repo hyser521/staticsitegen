@@ -7,7 +7,7 @@ class HTMLNode:
         self.props = props
     
     def to_html(self):
-        return NotImplementedError
+        raise NotImplementedError
     
     def props_to_html(self):
         return "".join(list(map(lambda prop: format_props(prop[0], prop[1]), self.props.items()))) if self.props is not None else ""
